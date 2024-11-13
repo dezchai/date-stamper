@@ -1,7 +1,7 @@
 "use client";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { InputFile } from "@/components/FileUpload";
-import { ChevronLeft, ChevronRight, Download } from "lucide-react";
+import { Download } from "lucide-react";
 import EXIF from "exif-js";
 import { useSettings } from "@/contexts/SettingsContext";
 import { Settings } from "@/components/Settings";
