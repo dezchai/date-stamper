@@ -2,7 +2,7 @@ import { useSettings } from "@/contexts/SettingsContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { useTheme } from "next-themes"
+import { useTheme } from "next-themes";
 import {
 	Select,
 	SelectContent,
@@ -29,7 +29,7 @@ const FONT_OPTIONS = [
 
 export function Settings() {
 	const { settings, updateSettings } = useSettings();
-	const { theme } = useTheme();
+	const { theme, setTheme } = useTheme();
 
 	const handleTextColorChange = (preset: "white" | "black" | "custom") => {
 		updateSettings({
@@ -162,11 +162,7 @@ export function Settings() {
 							value={settings.position}
 							onValueChange={(value) =>
 								updateSettings({
-									position: value as
-										| "bottomLeft"
-										| "bottomRight"
-										| "topLeft"
-										| "topRight",
+									position: value as typeof settings.position,
 								})
 							}
 						>
@@ -203,9 +199,15 @@ export function Settings() {
 						</Select>
 					</div>
 
-					<div className="space-y-2"	>
+					<div className="space-y-2">
 						<Label htmlFor="theme">Theme</Label>
-						<Select value={theme}>
+						<Select
+							value={theme}
+							onValueChange={(value) => {
+								setTheme(value);
+								updateSettings({ theme: value as typeof settings.theme });
+							}}
+						>
 							<SelectTrigger>
 								<SelectValue />
 							</SelectTrigger>
