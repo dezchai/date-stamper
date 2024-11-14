@@ -4,6 +4,7 @@ import "./globals.css";
 import { SettingsProvider } from "@/contexts/SettingsContext";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -34,6 +35,7 @@ export default function RootLayout({
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 					<SettingsProvider>{children}</SettingsProvider>
 					<Toaster />
+					<Analytics />
 				</ThemeProvider>
 			</body>
 		</html>
